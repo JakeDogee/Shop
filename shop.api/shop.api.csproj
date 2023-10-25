@@ -21,4 +21,8 @@
     <Folder Include="Services\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\shop.data\shop.data.csproj" />
+  </ItemGroup>
+
 </Project>
