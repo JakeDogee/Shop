@@ -1,11 +1,16 @@
-﻿using MongoDB.Bson;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using shop.data.Entities.Abstractions;
 
 namespace shop.data.Entities;
 
-public class User
+public class User : IdentitfiedEntity
 {
-    public ObjectId Id { get; set; }
+    [BsonElement("userName")]
     public string FullName { get; set; }
+    
+    [BsonElement("phone")]
     public string Phone { get; set; }
+    
+    [BsonElement("email")]
     public string Email { get; set; }
 }

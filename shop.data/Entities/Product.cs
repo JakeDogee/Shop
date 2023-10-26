@@ -1,14 +1,20 @@
-﻿namespace shop.data.Entities;
-using MongoDB.Bson;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using MongoDB.Bson.Serialization.Attributes;
+using shop.data.Entities.Abstractions;
 
-public class Product
+namespace shop.data.Entities;
+
+public class Product : IdentitfiedEntity
 {
-
-    public ObjectId Id { get; set; }
+    [BsonElement("name")]
     public string Name { get; set; }
+    
+    [BsonElement("price")]
     public decimal Price { get; set; }
-    public ObjectId GroupId { get; set; }
+
+    [BsonElement("groupId")]
+    public string GroupId { get; set; }
+
+    [BsonElement("image")]
     public string Image { get; set; }
 }
-    

@@ -1,9 +1,10 @@
-﻿using MongoDB.Bson;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using shop.data.Entities.Abstractions;
 
 namespace shop.data.Entities;
 
-public class Group
+public class Group : IdentitfiedEntity
 {
-    public ObjectId Id { get; set; }
+    [BsonElement("name")]
     public string Name { get; set; }
 }

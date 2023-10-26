@@ -1,4 +1,9 @@
+using shop.management.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
+builder
+    .SetUpConfigurations()
+    .ConfigureKestrel();
 
 // Add services to the container.
 builder.Services.AddRazorPages();

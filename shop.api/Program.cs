@@ -1,20 +1,29 @@
-var builder = WebApplication.CreateBuilder(args);
+using shop.api.Extensions;
+using shop.api.Repository;
+using shop.api.Repository.Abstractions;
+using shop.api.Services;
+using shop.api.Services.Abstractions;
+using shop.data;
 
-// Add services to the container.
+var builder = WebApplication.CreateBuilder(args);
+builder
+    .SetUpConfigurations()
+    .ConfigureKestrel();
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddDatabase(builder.Configuration);
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IProductService, ProductService>();
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+await app.Services.GetService<ShopContext>().MigrateAsync();
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 
