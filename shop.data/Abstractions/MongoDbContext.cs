@@ -37,10 +37,11 @@ public abstract class MongoDbContext : IMongoDbContext
         }
     }
 
-    public virtual async Task MigrateAsync()
+    public virtual Task MigrateAsync()
     {
         Console.WriteLine("Applying migration...");
         
         Console.WriteLine("Migration applied successfully");
+        return Task.CompletedTask;
     }
 }
